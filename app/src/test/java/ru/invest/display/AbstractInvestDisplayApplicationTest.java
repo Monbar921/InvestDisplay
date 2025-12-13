@@ -31,6 +31,7 @@ public abstract class AbstractInvestDisplayApplicationTest {
             .withUsername("sa")
             .withPassword("sa")
             .withNetwork(Network.SHARED)
+            .withInitScript("sql/init.sql")
             .withReuse(true);
 
     static {

@@ -6,28 +6,29 @@
           http://www.liquibase.org/xml/ns/dbchangelog
           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
 
-    <changeSet id="001-create-users-table" author="d.v.kornilovich">
-        <preConditions>
-            <not>
-                <tableExists tableName="users"/>
-            </not>
-        </preConditions>
-
-        <createTable tableName="users">
+    <changeSet id="007-create-asset-snapshot-table" author="d.v.kornilovich">
+        <createTable tableName="asset_snapshot">
             <column name="id" type="bigserial">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="uid" type="text">
-                <constraints unique="true" nullable="false"/>
+
+            <column name="asset_id" type="bigint">
+                <constraints foreignKeyName="fk_asset_snapshot_asset_id" references="asset(id)"
+                             nullable="false"/>
             </column>
-            <column name="email" type="varchar(255)">
-                <constraints nullable="false" unique="true"/>
-            </column>
-            <column name="password_hash" type="varchar(255)">
+
+            <column name="value" type="decimal(15,2)">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="currency" type="varchar(3)">
+                <constraints nullable="false"/>
+            </column>
+
             <column name="created_at" type="timestamp"
-                    defaultValueComputed="CURRENT_TIMESTAMP"/>
+                    defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
             <column name="updated_at" type="timestamp"/>
         </createTable>
     </changeSet>
