@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class TransactionController {
 
-    public Long create(){
+    public TransactionDto create(TransactionRequest request){
 
     }
 }

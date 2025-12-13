@@ -17,9 +17,8 @@
             <column name="id" type="bigserial">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="user_id" type="bigint">
-                <constraints foreignKeyName="fk_transaction_user_id" references="edb.users(id)"
-                             nullable="false"/>
+            <column name="user_uid" type="text">
+                <constraints nullable="false"/>
             </column>
             <column name="amount" type="decimal(15,2)">
                 <constraints nullable="false"/>
@@ -27,8 +26,8 @@
             <column name="currency" type="varchar(3)">
                 <constraints nullable="false"/>
             </column>
-            <column name="user_category_id" type="bigint">
-                <constraints foreignKeyName="fk_transaction_user_category_id" references="user_category(id)"
+            <column name="transaction_category_id" type="bigint">
+                <constraints foreignKeyName="fk_transaction_transaction_category_id" references="transaction_category(id)"
                              nullable="false"/>
             </column>
             <column name="merchant_id" type="bigint">

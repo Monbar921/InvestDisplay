@@ -17,9 +17,8 @@
             <column name="id" type="bigserial">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="user_id" type="bigint">
-                <constraints foreignKeyName="fk_merchant_user_id" references="edb.users(id)"
-                             nullable="false"/>
+            <column name="user_uid" type="text">
+                <constraints nullable="false"/>
             </column>
             <column name="name" type="varchar(255)"/>
             <column name="created_at" type="timestamp"

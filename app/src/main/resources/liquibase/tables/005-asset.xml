@@ -18,9 +18,8 @@
                 <constraints primaryKey="true"/>
             </column>
 
-            <column name="user_id" type="bigint">
-                <constraints foreignKeyName="fk_asset_user_id" references="edb.users(id)"
-                             nullable="false"/>
+            <column name="user_uid" type="text">
+                <constraints nullable="false"/>
             </column>
 
             <column name="asset_type_id" type="bigint">

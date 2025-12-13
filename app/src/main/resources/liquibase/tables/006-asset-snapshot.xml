@@ -12,9 +12,8 @@
                 <constraints primaryKey="true"/>
             </column>
 
-            <column name="asset_id" type="bigint">
-                <constraints foreignKeyName="fk_asset_snapshot_asset_id" references="asset(id)"
-                             nullable="false"/>
+            <column name="user_uid" type="text">
+                <constraints nullable="false"/>
             </column>
 
             <column name="value" type="decimal(15,2)">

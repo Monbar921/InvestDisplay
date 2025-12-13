@@ -6,7 +6,7 @@
 
     <include file="tables/edb/001-users.xml" relativeToChangelogFile="true"/>
 
-    <include file="tables/001-user-category.xml" relativeToChangelogFile="true"/>
+    <include file="tables/001-transaction-category.xml" relativeToChangelogFile="true"/>
     <include file="tables/002-merchant.xml" relativeToChangelogFile="true"/>
     <include file="tables/003-transaction.xml" relativeToChangelogFile="true"/>
     <include file="tables/004-asset-type.xml" relativeToChangelogFile="true"/>
