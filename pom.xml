@@ -34,6 +34,14 @@
         <springdoc-openapi-starter-webmvc-ui.version>2.8.12</springdoc-openapi-starter-webmvc-ui.version>
     </properties>
 
+    <modules>
+        <module>app</module>
+        <module>common</module>
+        <module>feature</module>
+        <module>invest-service-api</module>
+    </modules>
+
+
     <dependencyManagement>
         <dependencies>
             <dependency>
