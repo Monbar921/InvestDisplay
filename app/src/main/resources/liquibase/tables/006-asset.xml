@@ -19,7 +19,7 @@
             </column>
 
             <column name="user_id" type="bigint">
-                <constraints foreignKeyName="fk_asset_user_id" references="user(id)"
+                <constraints foreignKeyName="fk_asset_user_id" references="users(id)"
                              nullable="false"/>
             </column>
 
