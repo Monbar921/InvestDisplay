@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>aero.s7.smi.hotels</groupId>
-        <artifactId>sba-hotels</artifactId>
+        <groupId>ru.invest.display</groupId>
+        <artifactId>invest-service</artifactId>
         <version>${revision}</version>
     </parent>
 
@@ -14,42 +14,18 @@
 
     <dependencies>
         <dependency>
-            <groupId>aero.s7.smi.hotels</groupId>
-            <artifactId>common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>aero.s7.smi.hotels</groupId>
-            <artifactId>catalog</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>aero.s7.smi.hotels</groupId>
-            <artifactId>application</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>aero.s7.smi.hotels</groupId>
-            <artifactId>sba-hotels-client-spring-boot-starter</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>net.javacrumbs.shedlock</groupId>
-            <artifactId>shedlock-provider-jdbc-template</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -112,21 +88,6 @@
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>postgresql</artifactId>
-        </dependency>
-
-        <!--Logging-->
-        <dependency>
-            <groupId>aero.s7.undertow</groupId>
-            <artifactId>sba-access-log-enabler</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>biz.paluch.logging</groupId>
-            <artifactId>logstash-gelf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>aero.s7.smi.booking</groupId>
-            <artifactId>booking-client-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 

@@ -4,5 +4,8 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <include file="tables/001-application.xml" relativeToChangelogFile="true"/>
+    <include file="/tables/001-users.xml" relativeToChangelogFile="true"/>
+    <include file="/tables/002-user-category.xml" relativeToChangelogFile="true"/>
+    <include file="/tables/003-merchant.xml" relativeToChangelogFile="true"/>
+    <include file="/tables/004-transaction.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

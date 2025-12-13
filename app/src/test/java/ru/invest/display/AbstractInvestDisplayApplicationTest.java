@@ -1,4 +1,4 @@
-package aero.s7.smi.hotels;
+package ru.invest.display;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,17 +17,17 @@ import org.testcontainers.containers.PostgreSQLContainer;
 
 import java.nio.charset.StandardCharsets;
 
-@SpringBootTest(classes = HotelsApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = InvestDisplayApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @AutoConfigureMockMvc
-@ContextConfiguration(initializers = AbstractDatabaseHotelsTest.Initializer.class)
+@ContextConfiguration(initializers = AbstractInvestDisplayApplicationTest.Initializer.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public abstract class AbstractDatabaseHotelsTest {
+public abstract class AbstractInvestDisplayApplicationTest {
     @Autowired
     private ObjectMapper objectMapper;
 
     @SuppressWarnings("resource")
     public static final PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:17.6")
-            .withDatabaseName("hotels")
+            .withDatabaseName("invest-display")
             .withUsername("sa")
             .withPassword("sa")
             .withNetwork(Network.SHARED)

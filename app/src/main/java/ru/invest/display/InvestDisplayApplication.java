@@ -1,14 +1,14 @@
-package aero.s7.smi.hotels;
+package ru.invest.display;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @SuppressWarnings("checkstyle:HideUtilityClassConstructor")
-public class HotelsApplication {
+public class InvestDisplayApplication {
 
     public static void main(final String[] args) {
-        SpringApplication.run(HotelsApplication.class, args);
+        SpringApplication.run(InvestDisplayApplication.class, args);
     }
 
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+          http://www.liquibase.org/xml/ns/dbchangelog
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="004-create-transaction-table" author="d.v.kornilovich">
+        <preConditions>
+            <not>
+                <tableExists tableName="transaction"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="transaction">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints foreignKeyName="fk_transaction_user_id" references="user(id)"
+                             nullable="false"/>
+            </column>
+            <column name="amount" type="decimal(15,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency" type="varchar(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_category_id" type="bigint">
+                <constraints foreignKeyName="fk_transaction_user_category_id" references="user_category(id)"
+                             nullable="false"/>
+            </column>
+            <column name="merchant_id" type="bigint">
+                <constraints foreignKeyName="fk_transaction_merchant_id" references="merchant(id)"
+                             nullable="false"/>
+            </column>
+            <column name="timestamp" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+            <column name="created_at" type="timestamp"
+                    defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_at" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
