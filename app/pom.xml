@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>ru.invest.display</groupId>
-        <artifactId>invest-service</artifactId>
+        <groupId>ru.invest.display.expense.tracking</groupId>
+        <artifactId>expense-tracking</artifactId>
         <version>${revision}</version>
     </parent>
 

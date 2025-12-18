@@ -10,8 +10,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>ru.invest.display</groupId>
-    <artifactId>invest-service</artifactId>
+    <groupId>ru.invest.display.expense.tracking</groupId>
+    <artifactId>expense-tracking</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
 
@@ -38,7 +38,7 @@
         <module>app</module>
         <module>common</module>
         <module>feature</module>
-        <module>invest-service-api</module>
+        <module>expense-tracking-api</module>
     </modules>
 
 

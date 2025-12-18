@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>ru.invest.display</groupId>
-        <artifactId>invest-service</artifactId>
+        <groupId>ru.invest.display.expense.tracking</groupId>
+        <artifactId>expense-tracking</artifactId>
         <version>${revision}</version>
     </parent>
 
@@ -14,13 +14,19 @@
     <artifactId>feature</artifactId>
 
     <modules>
-        <module>rest-api</module>
+        <module>expense-service</module>
     </modules>
 
     <dependencies>
         <dependency>
-            <groupId>ru.invest.display</groupId>
+            <groupId>ru.invest.display.expense.tracking</groupId>
             <artifactId>common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ru.invest.display.expense.tracking</groupId>
+            <artifactId>expense-tracking-api</artifactId>
             <version>${project.version}</version>
         </dependency>
 

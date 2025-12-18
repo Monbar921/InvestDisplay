@@ -14,6 +14,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.PostgreSQLContainer;
+import ru.invest.display.expense.tracking.InvestDisplayApplication;
 
 import java.nio.charset.StandardCharsets;
 
