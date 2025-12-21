@@ -15,6 +15,6 @@ public class TransactionRequest {
     private Currency currency;
     private Long categoryId;
     private Long merchantId;
-    private ZonedDateTime timestamp;
+    private ZonedDateTime operationTimestamp;
     private String description;
 }

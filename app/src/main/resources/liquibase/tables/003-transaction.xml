@@ -30,7 +30,7 @@
                 <constraints foreignKeyName="fk_transaction_merchant_id" references="merchant(id)"
                              nullable="false"/>
             </column>
-            <column name="timestamp" type="timestamp">
+            <column name="operation_timestamp" type="varchar2(40)">
                 <constraints nullable="false"/>
             </column>
             <column name="description" type="text"/>

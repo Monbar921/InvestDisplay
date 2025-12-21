@@ -1,11 +1,13 @@
 package ru.invest.display.expense.tracking.common.model;
 
-import ru.invest.display.expense.tracking.common.domain.enums.Currency;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import ru.invest.display.expense.tracking.common.domain.enums.Currency;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.List;
 
 @Data
 @Accessors(chain = true)
@@ -14,9 +16,9 @@ public class TransactionModel {
     private String userUid;
     private BigDecimal amount;
     private Currency currency;
-    private Long categoryId;
+    private List<Long> categoryId;
     private Long merchantId;
-    private LocalDateTime timestamp;
+    private ZonedDateTime operationTimestamp;
     private String description;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

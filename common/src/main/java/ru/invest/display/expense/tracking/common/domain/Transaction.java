@@ -1,10 +1,7 @@
 package ru.invest.display.expense.tracking.common.domain;
 
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import ru.invest.display.expense.tracking.common.domain.enums.Currency;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -12,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -19,9 +18,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import ru.invest.display.expense.tracking.common.converter.ZonedDateTimeStringConverter;
+import ru.invest.display.expense.tracking.common.domain.enums.Currency;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Entity
@@ -57,7 +59,8 @@ public class Transaction {
     private Merchant merchant;
 
     @Column(name = "operation_timestamp")
-    private LocalDateTime operationTimestamp;
+    @Convert(converter = ZonedDateTimeStringConverter.class)
+    private ZonedDateTime operationTimestamp;
 
     @Column(name = "description")
     private String description;
