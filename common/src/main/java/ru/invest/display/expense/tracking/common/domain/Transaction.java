@@ -1,5 +1,8 @@
 package ru.invest.display.expense.tracking.common.domain;
 
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import ru.invest.display.expense.tracking.common.domain.enums.Currency;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,6 +22,7 @@ import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -42,9 +46,11 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     private Currency currency;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @ManyToMany
+    @JoinTable(name = "transaction_category", joinColumns = @JoinColumn(name = "transaction_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<Category> category;
 
     @ManyToOne
     @JoinColumn(name = "merchant_id")

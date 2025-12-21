@@ -6,24 +6,24 @@
           http://www.liquibase.org/xml/ns/dbchangelog
           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
 
-    <changeSet id="004-create-asset-type-table" author="d.v.kornilovich">
+    <changeSet id="004-create-transaction-category-table" author="d.v.kornilovich">
         <preConditions>
             <not>
-                <tableExists tableName="asset_type"/>
+                <tableExists tableName="transaction_category"/>
             </not>
         </preConditions>
 
-        <createTable tableName="asset_type">
+        <createTable tableName="transaction_category">
             <column name="id" type="bigserial">
                 <constraints primaryKey="true"/>
             </column>
-
-            <column name="user_uid" type="text">
-                <constraints nullable="false"/>
+            <column name="transaction_id" type="bigint">
+                <constraints foreignKeyName="fk_transaction_category_transaction_id" references="transaction(id)"
+                             nullable="false"/>
             </column>
-
-            <column name="name" type="varchar(100)">
-                <constraints nullable="false"/>
+            <column name="category_id" type="bigint">
+                <constraints foreignKeyName="fk_transaction_category_category_id" references="category(id)"
+                             nullable="false"/>
             </column>
         </createTable>
     </changeSet>

@@ -14,15 +14,15 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.PostgreSQLContainer;
-import ru.invest.display.expense.tracking.InvestDisplayApplication;
+import ru.invest.display.expense.tracking.ExpenseTrackingApplication;
 
 import java.nio.charset.StandardCharsets;
 
-@SpringBootTest(classes = InvestDisplayApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = ExpenseTrackingApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @AutoConfigureMockMvc
-@ContextConfiguration(initializers = AbstractInvestDisplayApplicationTest.Initializer.class)
+@ContextConfiguration(initializers = AbstractExpenseTrackingApplicationTest.Initializer.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public abstract class AbstractInvestDisplayApplicationTest {
+public abstract class AbstractExpenseTrackingApplicationTest {
     @Autowired
     private ObjectMapper objectMapper;
 

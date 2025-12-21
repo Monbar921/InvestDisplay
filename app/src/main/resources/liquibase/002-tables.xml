@@ -3,13 +3,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-
-    <include file="tables/edb/001-users.xml" relativeToChangelogFile="true"/>
-
     <include file="tables/001-transaction-category.xml" relativeToChangelogFile="true"/>
     <include file="tables/002-merchant.xml" relativeToChangelogFile="true"/>
     <include file="tables/003-transaction.xml" relativeToChangelogFile="true"/>
-    <include file="tables/004-asset-type.xml" relativeToChangelogFile="true"/>
-    <include file="tables/005-asset.xml" relativeToChangelogFile="true"/>
-    <include file="tables/006-asset-snapshot.xml" relativeToChangelogFile="true"/>
+    <include file="tables/004-transaction-category.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
