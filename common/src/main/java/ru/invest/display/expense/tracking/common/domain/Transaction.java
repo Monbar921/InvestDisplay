@@ -52,7 +52,7 @@ public class Transaction {
     @JoinTable(name = "transaction_category", joinColumns = @JoinColumn(name = "transaction_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private List<Category> category;
+    private List<Category> categories;
 
     @ManyToOne
     @JoinColumn(name = "merchant_id")

@@ -23,6 +23,8 @@ public abstract class TransactionMapper {
     @Setter(onMethod = @__({@Autowired}))
     private DateTimeMapper dateTimeMapper;
     @Setter(onMethod = @__({@Autowired}))
+    private CategoryMapper categoryMapper;
+    @Setter(onMethod = @__({@Autowired}))
     private TransactionRepository transactionRepository;
 
     @Mapping(target = "userUid", source = "request", qualifiedByName = "getUserUid")
@@ -32,14 +34,14 @@ public abstract class TransactionMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "merchant", source = "merchantId", qualifiedByName = "findByIdValidated")
-    @Mapping(target = "category", ignore = true)
+    @Mapping(target = "categories", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     public abstract Transaction toEntity(TransactionModel transaction);
 
     @ObjectFactory
-    protected Transaction objectFactory(final TransactionModel transaction){
-        if(transaction == null){
+    protected Transaction objectFactory(final TransactionModel transaction) {
+        if (transaction == null) {
             throw new TransactionValidationException("Can not map null model to entity");
         }
 
@@ -48,8 +50,8 @@ public abstract class TransactionMapper {
                 .orElseGet(this::createNewTransaction);
     }
 
-    protected Transaction findById(final Long id){
-        if(id == null){
+    protected Transaction findById(final Long id) {
+        if (id == null) {
             return null;
         }
 
@@ -59,14 +61,14 @@ public abstract class TransactionMapper {
                 .orElseThrow(() -> new TransactionNotFoundException(id));
     }
 
-    protected Transaction createNewTransaction(){
+    protected Transaction createNewTransaction() {
         return new Transaction()
                 .setCreatedAt(
                         dateTimeMapper.getCurrentDateTimeUtc()
                 );
     }
 
-    protected Transaction setUpdated(final Transaction transaction){
+    protected Transaction setUpdated(final Transaction transaction) {
         return Optional.ofNullable(transaction)
                 .map(entity -> entity.setUpdatedAt(
                         dateTimeMapper.getCurrentDateTimeUtc()
@@ -75,11 +77,13 @@ public abstract class TransactionMapper {
     }
 
     @AfterMapping
-    protected void afterMapping(final Transaction entity, final TransactionModel model){
-        if(ObjectUtils.anyNull(entity, model)){
+    protected void afterMapping(final Transaction entity, final TransactionModel model) {
+        if (ObjectUtils.anyNull(entity, model)) {
             return;
         }
 
-
+        entity.setCategories(
+                categoryMapper.persistCategories(entity.getCategories(), model.getCategories())
+        );
     }
 }

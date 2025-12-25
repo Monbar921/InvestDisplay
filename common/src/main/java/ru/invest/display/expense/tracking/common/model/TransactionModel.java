@@ -16,7 +16,7 @@ public class TransactionModel {
     private String userUid;
     private BigDecimal amount;
     private Currency currency;
-    private List<Long> categoryId;
+    private List<CategoryModel> categories;
     private Long merchantId;
     private ZonedDateTime operationTimestamp;
     private String description;
