@@ -9,8 +9,6 @@ import ru.invest.display.expense.tracking.common.repository.TransactionRepositor
 import ru.invest.display.expense.tracking.expense.service.mapper.TransactionMapper;
 import ru.invest.display.expense.tracking.expense.service.usecase.TransactionUseCase;
 
-import java.util.Optional;
-
 @Component
 @RequiredArgsConstructor
 public class TransactionUseCaseImpl implements TransactionUseCase {

@@ -5,6 +5,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.invest.display.expense.tracking.api.request.TransactionRequest;
@@ -19,6 +20,7 @@ import ru.invest.display.expense.tracking.common.repository.TransactionRepositor
 import java.util.Optional;
 
 @Mapper(uses = {UserMapper.class, MerchantMapper.class})
+@SuppressWarnings("checkstyle:AbstractClassName")
 public abstract class TransactionMapper {
     @Setter(onMethod = @__({@Autowired}))
     private DateTimeMapper dateTimeMapper;
@@ -28,12 +30,13 @@ public abstract class TransactionMapper {
     private TransactionRepository transactionRepository;
 
     @Mapping(target = "userUid", source = "request", qualifiedByName = "getUserUid")
+    @Mapping(target = "categories", source = "categories")
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     public abstract TransactionModel fromRequest(TransactionRequest request);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "merchant", source = "merchantId", qualifiedByName = "findByIdValidated")
+    @Mapping(target = "merchant", source = "merchantId", qualifiedByName = "findMerchantById")
     @Mapping(target = "categories", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
@@ -77,13 +80,13 @@ public abstract class TransactionMapper {
     }
 
     @AfterMapping
-    protected void afterMapping(final Transaction entity, final TransactionModel model) {
+    protected void afterMapping(@MappingTarget final Transaction entity, final TransactionModel model) {
         if (ObjectUtils.anyNull(entity, model)) {
             return;
         }
 
         entity.setCategories(
-                categoryMapper.persistCategories(entity.getCategories(), model.getCategories())
+                categoryMapper.persistCategoriesNotCreateEntity(entity.getCategories(), model.getCategories())
         );
     }
 }

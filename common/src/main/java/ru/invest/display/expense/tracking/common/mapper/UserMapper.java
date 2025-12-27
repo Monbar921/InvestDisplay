@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.invest.display.expense.tracking.common.context.UserContext;
 
 @Mapper
+@SuppressWarnings("checkstyle:AbstractClassName")
 public abstract class UserMapper {
     @Setter(onMethod = @__({@Autowired}))
     private UserContext userContext;
