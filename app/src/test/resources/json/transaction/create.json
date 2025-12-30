@@ -1,0 +1,9 @@
+{
+  "id": null,
+  "amount": 100,
+  "currency": "RUB",
+  "categories": [],
+  "merchantId": 1,
+  "operationTimestamp": "2025-03-15T10:30:45.123456789+02:00",
+  "description": null
+}

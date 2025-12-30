@@ -15,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.PostgreSQLContainer;
 import ru.invest.display.expense.tracking.ExpenseTrackingApplication;
+import ru.invest.display.expense.tracking.api.annotation.EnableExpenseTrackingClient;
 
 import java.nio.charset.StandardCharsets;
 
@@ -22,6 +23,7 @@ import java.nio.charset.StandardCharsets;
 @AutoConfigureMockMvc
 @ContextConfiguration(initializers = AbstractExpenseTrackingApplicationTest.Initializer.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@EnableExpenseTrackingClient
 public abstract class AbstractExpenseTrackingApplicationTest {
     @Autowired
     private ObjectMapper objectMapper;
@@ -53,7 +55,7 @@ public abstract class AbstractExpenseTrackingApplicationTest {
     }
 
     @SneakyThrows
-    protected  <T> T readObjectFromFile(final String json, final Class<T> clazz) {
-        return objectMapper.readValue(IOUtils.resourceToString(json, StandardCharsets.UTF_8), clazz);
+    protected <T> T readObjectFromFile(final String jsonPath, final Class<T> clazz) {
+        return objectMapper.readValue(IOUtils.resourceToString(jsonPath, StandardCharsets.UTF_8), clazz);
     }
 }

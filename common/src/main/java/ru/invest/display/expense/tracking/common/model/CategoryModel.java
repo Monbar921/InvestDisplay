@@ -11,7 +11,6 @@ public class CategoryModel {
     private Long id;
     private String userUid;
     private String name;
-    private String description;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

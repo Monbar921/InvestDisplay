@@ -26,10 +26,10 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "user_uid")
+    @Column(name = "user_uid", nullable = false)
     private String userUid;
 
     @Column(name = "created_at")

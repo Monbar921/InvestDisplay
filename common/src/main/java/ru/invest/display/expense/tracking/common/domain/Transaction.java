@@ -38,13 +38,13 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_uid")
+    @Column(name = "user_uid", nullable = false)
     private String userUid;
 
-    @Column(name = "amount")
+    @Column(name = "amount", nullable = false)
     private BigDecimal amount;
 
-    @Column(name = "currency")
+    @Column(name = "currency", nullable = false)
     @Enumerated(EnumType.STRING)
     private Currency currency;
 
@@ -54,11 +54,11 @@ public class Transaction {
     )
     private List<Category> categories;
 
-    @ManyToOne
-    @JoinColumn(name = "merchant_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "merchant_id", nullable = false)
     private Merchant merchant;
 
-    @Column(name = "operation_timestamp")
+    @Column(name = "operation_timestamp", nullable = false)
     @Convert(converter = ZonedDateTimeStringConverter.class)
     private ZonedDateTime operationTimestamp;
 

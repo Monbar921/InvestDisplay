@@ -5,11 +5,14 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
+import ru.invest.display.expense.tracking.api.request.CategoryRequest;
 import ru.invest.display.expense.tracking.common.domain.Category;
 import ru.invest.display.expense.tracking.common.exception.not.found.CategoryNotFoundException;
 import ru.invest.display.expense.tracking.common.mapper.DateTimeMapper;
+import ru.invest.display.expense.tracking.common.mapper.UserMapper;
 import ru.invest.display.expense.tracking.common.model.CategoryModel;
 import ru.invest.display.expense.tracking.common.repository.CategoryRepository;
 
@@ -20,13 +23,20 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Mapper
+@Mapper(uses = {UserMapper.class})
 @SuppressWarnings("checkstyle:AbstractClassName")
 public abstract class CategoryMapper {
     @Setter(onMethod = @__({@Autowired}))
     private DateTimeMapper dateTimeMapper;
     @Setter(onMethod = @__({@Autowired}))
     private CategoryRepository categoryRepository;
+
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "userUid", source = "request", qualifiedByName = "getUserUid")
+    @Mapping(target = "name", source = "name")
+    @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    public abstract CategoryModel fromRequest(CategoryRequest request);
 
     public List<Category> persistCategories(final List<Category> existed, final List<CategoryModel> requested) {
         final Set<Long> idSet = Optional.ofNullable(requested)
@@ -55,6 +65,13 @@ public abstract class CategoryMapper {
         return addNewCategories(existed, requested);
     }
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "userUid", source = "userUid")
+    @Mapping(target = "name", source = "name")
+    @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    public abstract Category toEntity(CategoryModel model);
+
     public Category toEntity(final Long id) {
         return findById(id);
     }
@@ -67,15 +84,27 @@ public abstract class CategoryMapper {
                 .toList();
     }
 
-//    @ObjectFactory
-//    protected Category objectFactory(){
-//
-//    }
+    @ObjectFactory
+    protected Category objectFactory(final CategoryModel model) {
+        if (model == null) {
+            return null;
+        }
+
+        return Optional.ofNullable(model.getId())
+                .map(this::findById)
+                .map(c -> c.setUpdatedAt(dateTimeMapper.getCurrentDateTimeUtc()))
+                .orElseGet(this::createCategory);
+    }
 
     protected Category findById(final Long id) {
         return Optional.ofNullable(id)
                 .flatMap(categoryRepository::findById)
                 .orElseThrow(() -> new CategoryNotFoundException(id));
+    }
+
+    protected Category createCategory() {
+        return new Category()
+                .setCreatedAt(dateTimeMapper.getCurrentDateTimeUtc());
     }
 
     @Mapping(target = "id", ignore = true)

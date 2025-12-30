@@ -28,14 +28,14 @@ public class Merchant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @Column(name = "user_uid")
+    @Column(name = "user_uid", nullable = false)
     private String userUid;
 
     @Column(name = "created_at")
